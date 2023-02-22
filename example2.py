@@ -11,12 +11,19 @@ driver.get("https://mcstaging.plazalama.com.do")
 #Esto deberia lanzar una exccepcion porque ese ID no existe
 #my_div = driver.find_element(By.ID, "dive-into-javascript")
 try:
+    mi_lista = driver.find_elements(By.XPATH, ".//*[contains(@class , 'authorization-link')]")
+    for e in mi_lista:
+        print(e)
+    driver.find_element(By.XPATH, ".//*[contains(@class , 'authorization-link')]//a[not(@class)]").click()
     element = WebDriverWait(driver, 3).until(
-        EC.presence_of_element_located((By.XPATH, ".//*[contains(@class , 'authorization-link')]"))
+        EC.element_to_be_clickable((By.XPATH, ".//*[contains(@class , 'authorization-link')]"))
         )
     print(type(element))
+    
     WebDriverWait(driver, 3)
     element.click()
+    element.click()
+    
     
 
 except TimeoutException as ex:
