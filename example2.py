@@ -24,15 +24,16 @@ try:
         EC.element_to_be_clickable((By.XPATH, ".//*[contains(@class , 'authorization-link')]"))
         )
     """
-    """"
+    
     element = WebDriverWait(driver, 3).until(
-        EC.element_to_be_clickable((By.XPATH, ".//*[contains(@class , 'logo')]"))
+        EC.element_to_be_clickable((By.XPATH, ".//*[contains(@class , 'subcategory-title')]"))
         )
+    
     """
-
     element = WebDriverWait(driver, 3).until(
         EC.element_to_be_clickable((By.XPATH, ".//*[text()contains(. ,'Iniciar')]"))
         )
+    """
     #element = driver.find_element(By.XPATH, ".//*[text()contains(text(),'Iniciar')]")
     #element.click()
     print(type(element))
