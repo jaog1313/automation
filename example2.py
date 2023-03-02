@@ -40,6 +40,7 @@ try:
     
     WebDriverWait(driver, 3)
     element.click()
+    WebDriverWait(driver, 3)
     #element.click()
 
 finally:
