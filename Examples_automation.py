@@ -10,8 +10,11 @@ from selenium.webdriver.common.keys import Keys
 
 class Examples_automation(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        #self.driver = webdriver.Chrome()
         #self.driver = webdriver.Chrome('./chromedriver')
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        self.driver = webdriver.Chrome(options=options)
     def test_plazalama(self):
         driver = self.driver
         driver.get("https://mcstaging.plazalama.com.do")
@@ -23,17 +26,25 @@ class Examples_automation(unittest.TestCase):
                 EC.presence_of_element_located((By.NAME, "q"))
                 )
             """
-            element = WebDriverWait(driver, 3).until(
-                EC.element_to_be_clickable((By.XPATH, ".//*[contains(@class , 'subcategory-title')]"))
+            element2 = WebDriverWait(driver, 3).until(
+                EC.presence_of_all_elements_located((By.XPATH, ".//*[contains(@class , 'subcategory-title')]"))
                 )
             """
+            
+            
             #element.click()
             element.send_keys("test")
             element.send_keys(Keys.RETURN)
+            #print(element2.text)
             time.sleep(5)
-            print(driver.page_source)
+            self.assertNotIn("no ha dado resultados", driver.page_source)
+
+            #print(driver.page_source)
         except:
             print("Sucedió un problema")
+            
+        
+        
     
     def tearDown(self):
         self.driver.quit()
