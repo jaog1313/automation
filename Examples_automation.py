@@ -15,21 +15,23 @@ class Examples_automation(unittest.TestCase):
         options = webdriver.ChromeOptions()
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
         self.driver = webdriver.Chrome(options=options)
+    
+    """
     def test_plazalama(self):
         driver = self.driver
         driver.get("https://mcstaging.plazalama.com.do")
         print(driver.title)
         driver.maximize_window()
         try:
-
+            
             element = WebDriverWait(driver, 3).until(
                 EC.presence_of_element_located((By.NAME, "q"))
                 )
-            """
+            
             element2 = WebDriverWait(driver, 3).until(
                 EC.presence_of_all_elements_located((By.XPATH, ".//*[contains(@class , 'subcategory-title')]"))
                 )
-            """
+            
             
             
             #element.click()
@@ -42,9 +44,36 @@ class Examples_automation(unittest.TestCase):
             #print(driver.page_source)
         except:
             print("Sucedió un problema")
+        """
             
         
-        
+    def test_automation_exercise(self):
+        driver = self.driver
+        driver.get("https://automationexercise.com")
+        print(driver.title)
+        driver.maximize_window()
+        try:
+            """
+            element = WebDriverWait(driver, 3).until(
+                EC.presence_of_element_located((By.NAME, "q"))
+                )
+            """
+            element = WebDriverWait(driver, 3).until(
+                EC.element_to_be_clickable((By.XPATH, ".//*[contains(@class , 'fa fa-plus')]"))
+                )
+            
+            
+            
+            element.click()
+            #element.send_keys("test")
+            #element.send_keys(Keys.RETURN)
+            #print(element2.text)
+            time.sleep(5)
+            self.assertNotIn("no ha dado resultados", driver.page_source)
+
+            #print(driver.page_source)
+        except Exception as e:
+            print("Sucedió un problema" + str(e) )
     
     def tearDown(self):
         self.driver.quit()
