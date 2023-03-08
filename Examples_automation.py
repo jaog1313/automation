@@ -16,7 +16,7 @@ class Examples_automation(unittest.TestCase):
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
         self.driver = webdriver.Chrome(options=options)
     
-    """
+    
     def test_plazalama(self):
         driver = self.driver
         driver.get("https://mcstaging.plazalama.com.do")
@@ -27,11 +27,11 @@ class Examples_automation(unittest.TestCase):
             element = WebDriverWait(driver, 3).until(
                 EC.presence_of_element_located((By.NAME, "q"))
                 )
-            
+            """"
             element2 = WebDriverWait(driver, 3).until(
                 EC.presence_of_all_elements_located((By.XPATH, ".//*[contains(@class , 'subcategory-title')]"))
                 )
-            
+            """
             
             
             #element.click()
@@ -42,9 +42,9 @@ class Examples_automation(unittest.TestCase):
             self.assertNotIn("no ha dado resultados", driver.page_source)
 
             #print(driver.page_source)
-        except:
-            print("Sucedió un problema")
-        """
+        except Exception as e:
+            print("Sucedió un problema" + str(e))
+        
             
         
     def test_automation_exercise(self):
@@ -76,7 +76,7 @@ class Examples_automation(unittest.TestCase):
             print("Sucedió un problema" + str(e) )
     
     def tearDown(self):
-        self.driver.quit()
+        self.driver.close()
 
 if __name__ == "__main__":
     unittest.main()
