@@ -7,6 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 
+OMNI_CLIENTS = {"plazalama" :{"RD" : {"stg" : "https://mcstaging.plazalama.com.do"}},
+                "purdy" : {"CR" : {"stg" : "mcstaging.purdyenlinea.com"}}
+}
 
 class Examples_automation(unittest.TestCase):
     def setUp(self):
@@ -19,7 +22,7 @@ class Examples_automation(unittest.TestCase):
     
     def test_plazalama(self):
         driver = self.driver
-        driver.get("https://mcstaging.plazalama.com.do")
+        driver.get(OMNI_CLIENTS["plazalama"]["RD"]["stg"])
         print(driver.title)
         driver.maximize_window()
         try:
